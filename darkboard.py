@@ -144,7 +144,7 @@ def detect(net, meta, image, thresh=.5, hier_thresh=.5, nms=.45):
             if dets[j].prob[i] > 0:
                 b = dets[j].bbox
                 res.append((meta.names[i], dets[j].prob[i], (b.x, b.y, b.w, b.h)))
-                cv2.rectangle(cvImg,(int(b.x),int(b.y)),(int(b.x+b.w),int(b.y+b.h)),(0,255,0),3)
+                cv2.rectangle(cvImg,(int(b.x-b.w/2),int(b.y-b.h/2)),(int(b.x+b.w/2),int(b.y+b.h/2)),(0,255,0),3)
     frameCount+=1
     cv2.imwrite("frame" + str(frameCount) + ".jpg", cvImg)
     res = sorted(res, key=lambda x: -x[1])
